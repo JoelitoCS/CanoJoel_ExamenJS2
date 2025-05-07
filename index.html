@@ -214,29 +214,53 @@
 
             boton.addEventListener("click", function(){
 
-				console.log("Has hecho clic en el botón");
-				
+                console.log("Has hecho clic en el botón");
+                
 
-				//Hago que con la función getRandomIndex obtenga un número aleatorio entre 0 y el número de preguntas que hay en el array preguntasXML
+				//Llamo a la funcion getRandomIndex y le doy preguntasXML para que me de 1 pregunta aleatoria
+
     			const indexPregunta = getRandomIndex(preguntasXML);
+
+
+				//Inyecto en pregunta con innerHTML la pregunta random de mi array, y accedo a la propiedad de pregunta dentro de mi array, el cual ssse llama pregunta
+
     			document.querySelector("#pregunta").innerHTML = preguntasXML[indexPregunta].pregunta;
 
+				let opcionesHTML = document.querySelector("#opcions");
 
 				let preguntas = document.querySelector("#pregunta");
 
-				let preguntaSeleccionada = preguntasXML[randmomIndex];
-				let opciones = document.querySelector("#opcions");
+				//Guardo la pregunta random de mi array, y digo de mi array ya que estoy utilizando los corchetes para acceder a ella, en preguntaSeleccionada que será la que se va a mostrar
+
+				let preguntaSeleccionada = preguntasXML[indexPregunta];
+				
 
 
 				preguntas.innerHTML = preguntaSeleccionada.pregunta; // Muestra la pregunta seleccionada
 
-				opciones.innerHTML = ""; // Boora opciones anteriores
+				let opciones = ""; // Vació mi nueva variable opciones para el bucle de a continuación
+
+				
+
 				for (let i=0; i<preguntaSeleccionada.opciones.length; i++){
 					
-					opciones.innerHTML += `<button class="opcio">${preguntaSeleccionada.opciones[i]}</button>`;
+					opciones += `<button class="opcio">${preguntaSeleccionada.opciones[i]}</button>`;
 
 				}
 
+				opcionesHTML.innerHTML = opciones; // Muestra las opciones
+
+
+
+			});
+
+
+			//No funciona
+			let boton2 = document.querySelector("button");
+
+			boton2.addEventListener("click", function(){
+
+				console.log("Has clicado una de las opciones");
 
 
 			});
